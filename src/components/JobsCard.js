@@ -1,4 +1,5 @@
 import React from 'react'
+import { CheckBox } from '@mui/icons-material';
 
 const JobsCard = ({data}) => {
   return (
@@ -14,7 +15,7 @@ const JobsCard = ({data}) => {
 
         {(data?.minJdSalary || data?.maxJdSalary ) ?  
           <div className='salary_range'>
-            <div>Estimated Salary: <span>{ data.minJdSalary && data?.salaryCurrencyCode}{data.minJdSalary && data?.minJdSalary + " - "}{ data.maxJdSalary && data?.salaryCurrencyCode}{data?.maxJdSalary}K</span></div>
+            <div>Estimated Salary: <span>{ data.minJdSalary && data?.salaryCurrencyCode}{data.minJdSalary && data?.minJdSalary + " - "}{ data.maxJdSalary && data?.salaryCurrencyCode}{data?.maxJdSalary}K</span><CheckBox className='checked'/></div>
         </div>    : ""
         }
       

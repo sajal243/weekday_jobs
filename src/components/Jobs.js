@@ -41,7 +41,7 @@ const Jobs = () => {
                 headers: myHeaders,
                 body : body,
             }
-
+            
             fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
             .then(respone => {
                 if(!respone.ok){
@@ -54,6 +54,7 @@ const Jobs = () => {
                 // console.log(respData["jdList"].length)
 
                 setAllJobs(allJobs => [...allJobs, ...respData["jdList"]])
+                // setFilteredJobs(filteredJobs => [...filteredJobs, ...respData["jdList"]])
                 setLoading(false)
             })
             .catch((error =>{
@@ -76,39 +77,42 @@ const Jobs = () => {
             const filterRole = filters.role.toLowerCase();
             const filterCompany = filters.company.toLowerCase();
             const filterLocation = filters.location.toLowerCase();
+            console.log("reset +++++++");
+            let condn = true;
 
             if(parseInt(filters.minExp) > 0){
-                return parseInt(filters.minExp) <=  parseInt(job.minExp) 
+                condn = condn && parseInt(filters.minExp) <=  parseInt(job.minExp)
             }
             if(parseInt(filters.minBasePay) > 0){
-                return parseInt(filters.minBasePay) <= parseInt(job.minJdSalary)
+                condn = condn && parseInt(filters.minBasePay) <= parseInt(job.minJdSalary)
             }
             if(filterRole !== ""){
-                return job.jobRole.toLowerCase().includes(filterRole);
+                condn = condn && job.jobRole.toLowerCase().includes(filterRole);
             }
             if(filterCompany !== ""){
-                return job.companyName.toLowerCase().includes(filterCompany)
+                condn = condn && job.companyName.toLowerCase().includes(filterCompany)
             }
             if(filterLocation !== ""){
-                return job.location.toLowerCase().includes(filterLocation)
+                condn = condn && job.location.toLowerCase().includes(filterLocation)
             }
 
 
-            if(filterJobType === "remote" || filterJobType === "hybrid"){
+            if(filterJobType === "remote"){
                 console.log("2222222");
-                return filterJobType === job.location.toLowerCase();
+                condn = condn && filterJobType === job.location.toLowerCase();
             }
-            else if(filterJobType !== "onsite" && filterJobType !== ""){
-                    if(job.location.toLowerCase() !== "remote" || job.location.toLowerCase() !== "hybrid"){
-                        console.log("11111111111");
-                        return true;
-                    }
-                    else{
-                        console.log("3333333333");
-                        return false;
-                    }
+            else if(filterJobType === "onsite"){
+                if(job.location.toLowerCase() == "remote"){
+                    console.log("11111111111");
+                    condn = condn && false;
+                }
+                else{
+                    console.log("3333333333");
+                    condn = condn && true;
+                }
             }
-            return job;
+
+            return condn;
 
         })
         setFilteredJobs(filtered)

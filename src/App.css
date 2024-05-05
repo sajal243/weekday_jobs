@@ -137,6 +137,13 @@ img{
   /* background-color: none !important; */
 }
 
+.checked{
+  color: green !important;
+  width: 18px !important;
+  height: 18px !important;
+  vertical-align: bottom !important;
+}
+
 
 @media (max-width: 1300px) {
   .jobs_div{

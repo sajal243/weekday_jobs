@@ -14,7 +14,7 @@ const TextBased = ({label, filter, setFilters}) => {
         }, 700);
 
         return () => clearTimeout(delayDebounceFn);
-    }, [searchText, filter, setFilters]);
+    }, [searchText, filter]);
 
     function handleTextBasedFilter(e){
         // console.log(e.target.value);
