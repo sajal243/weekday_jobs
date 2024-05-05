@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 
+// component to form all text based filters
 const TextBased = ({label, filter, setFilters}) => {
 
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            console.log(searchText)
             setFilters(prevFilters => ({
                 ...prevFilters, [filter]: searchText
             }));
@@ -17,7 +17,6 @@ const TextBased = ({label, filter, setFilters}) => {
     }, [searchText, filter]);
 
     function handleTextBasedFilter(e){
-        // console.log(e.target.value);
         // setFilters(prevFilters => ({
         //     ...prevFilters, [filter]: e.target.value
         // }));

@@ -1,6 +1,7 @@
 import React from 'react'
 import { CheckBox } from '@mui/icons-material';
 
+// component to form job card
 const JobsCard = ({data}) => {
   return (
     <div className='jobs_card'>

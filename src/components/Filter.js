@@ -2,9 +2,8 @@ import React, { useState} from 'react'
 import {Select, MenuItem, InputLabel, FormControl, IconButton} from "@mui/material"
 import { Clear as ClearIcon } from '@mui/icons-material';
 
+// component to handle dropdown based filter
 const Filter = ({filter, setFilters, options, label}) => {
-    // console.log(filter)
-
     const [selectedOption, setSelectedOption] = useState("");
 
     function handleFilterChange(e){

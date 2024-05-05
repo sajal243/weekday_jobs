@@ -10,7 +10,7 @@ const Jobs = () => {
     const [page, setPage] = useState(0);
     const [isLoading, setLoading] = useState(true);
     const [filteredJobs, setFilteredJobs] = useState([]);
-    // const [filter, setFilter] = useState("");
+
     const [filters, setFilters] = useState({
         jobType: '',
         minExp: "",
@@ -21,11 +21,13 @@ const Jobs = () => {
         // Add more filters as needed
       });
 
+    // values for filters
     const minExp = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     const jobType = ["Remote", "Onsite"];
     const minBasePay = ["0", "10", "20", "30", "40", "50", "60", "70"];
     const role = ["frontend", "backend", "fullstack", "ios", "tech lead", "android", "designer", "product manager"];
 
+    // calling api to fetch jobs
     useEffect(()=>{
         const fetchData = () => {
             const myHeaders = new Headers();
@@ -51,10 +53,7 @@ const Jobs = () => {
                 return respone.json();
             })
             .then(respData => {
-                // console.log(respData["jdList"].length)
-
                 setAllJobs(allJobs => [...allJobs, ...respData["jdList"]])
-                // setFilteredJobs(filteredJobs => [...filteredJobs, ...respData["jdList"]])
                 setLoading(false)
             })
             .catch((error =>{
@@ -65,19 +64,19 @@ const Jobs = () => {
 
         fetchData(); //fetching jobs data
 
-        // infinte scrolling effect 
-
+        // infinte scrolling effect
         window.addEventListener("scroll", handleScroll);
 
     }, [page]);
 
+    // filter logic
     useEffect(()=>{
         const filtered = allJobs.filter(job=> {
             const filterJobType = filters.jobType.toLowerCase();
             const filterRole = filters.role.toLowerCase();
             const filterCompany = filters.company.toLowerCase();
             const filterLocation = filters.location.toLowerCase();
-            console.log("reset +++++++");
+           
             let condn = true;
 
             if(parseInt(filters.minExp) > 0){
@@ -95,19 +94,14 @@ const Jobs = () => {
             if(filterLocation !== ""){
                 condn = condn && job.location.toLowerCase().includes(filterLocation)
             }
-
-
             if(filterJobType === "remote"){
-                console.log("2222222");
                 condn = condn && filterJobType === job.location.toLowerCase();
             }
             else if(filterJobType === "onsite"){
                 if(job.location.toLowerCase() == "remote"){
-                    console.log("11111111111");
                     condn = condn && false;
                 }
                 else{
-                    console.log("3333333333");
                     condn = condn && true;
                 }
             }
@@ -118,6 +112,7 @@ const Jobs = () => {
         setFilteredJobs(filtered)
     }, [allJobs, filters])
 
+    // infinite scrolling effect
     function handleScroll(){
         // console.log("window ",  window.innerHeight);
         // console.log("scrollTop ", document.documentElement.scrollTop );
@@ -128,8 +123,7 @@ const Jobs = () => {
         }
     }
 
-   
-
+    // rendering the jobs
   return (
     <>
     <div className='filter_dropdown'>
