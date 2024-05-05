@@ -4,6 +4,7 @@ import JobsCard from './JobsCard';
 const Jobs = () => {
 
     const [allJobs, setAllJobs] = useState([]);
+    const [page, setPage] = useState(0);
     const [isLoading, setLoading] = useState(true);
 
     useEffect(()=>{
@@ -13,7 +14,7 @@ const Jobs = () => {
 
             const body = JSON.stringify({
                 limit: 10,
-                offset: 0
+                offset: page
             });
 
             const requestOptions = {
@@ -44,7 +45,21 @@ const Jobs = () => {
 
         fetchData(); //fetching jobs data
 
-    }, []);
+        // infinte scrolling effect 
+
+        window.addEventListener("scroll", handleScroll);
+
+    }, [page]);
+
+    function handleScroll(){
+        // console.log("window ",  window.innerHeight);
+        // console.log("scrollTop ", document.documentElement.scrollTop );
+        // console.log("offset height ", document.documentElement.offsetHeight);
+        if( (window.innerHeight + document.documentElement.scrollTop) >= (document.documentElement.offsetHeight - 400)){
+           setPage(page => page + 1)
+           setLoading(false);
+        }
+    }
 
   return (
     <>
