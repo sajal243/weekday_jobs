@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Weekday Jobs
+      <h1> Weekday Jobs </h1>
     </div>
   );
 }
