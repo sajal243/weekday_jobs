@@ -104,12 +104,12 @@ img{
   margin: 5px 0;
 }
 
-.filters {
+.filters, .text_filter{
   position: relative;
-  margin: 0 10px;
+  margin: 0 15px !important;
 }
 
-.custom-select{
+.custom-select, .text_filter{
   min-width: 150px !important;
 }
 

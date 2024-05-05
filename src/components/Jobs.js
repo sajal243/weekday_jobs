@@ -16,7 +16,8 @@ const Jobs = () => {
         minExp: "",
         minBasePay: "",
         role: "",
-        company: ""
+        company: "",
+        location: ""
         // Add more filters as needed
       });
 
@@ -74,6 +75,7 @@ const Jobs = () => {
             const filterJobType = filters.jobType.toLowerCase();
             const filterRole = filters.role.toLowerCase();
             const filterCompany = filters.company.toLowerCase();
+            const filterLocation = filters.location.toLowerCase();
 
             if(parseInt(filters.minExp) > 0){
                 return parseInt(filters.minExp) <=  parseInt(job.minExp) 
@@ -86,6 +88,9 @@ const Jobs = () => {
             }
             if(filterCompany !== ""){
                 return job.companyName.toLowerCase().includes(filterCompany)
+            }
+            if(filterLocation !== ""){
+                return job.location.toLowerCase().includes(filterLocation)
             }
 
 
@@ -129,6 +134,7 @@ const Jobs = () => {
         <Filter filter={"minBasePay"} setFilters={setFilters} options = {minBasePay} label="Min. Pay"/>
         <Filter filter={"role"} setFilters={setFilters} options = {role} label="Roles"/>
         <TextBased label ="Company" filter={"company"} setFilters={setFilters}/>
+        <TextBased label ="Location" filter={"location"} setFilters={setFilters}/>
     </div>
     <div className='jobs_div'>
         { filteredJobs && 
