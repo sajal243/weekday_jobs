@@ -3,7 +3,7 @@ import {Select, MenuItem, InputLabel, FormControl, IconButton} from "@mui/materi
 import { Clear as ClearIcon } from '@mui/icons-material';
 
 const Filter = ({filter, setFilters, options, label}) => {
-    console.log(filter)
+    // console.log(filter)
 
     const [selectedOption, setSelectedOption] = useState("");
 

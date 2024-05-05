@@ -27,7 +27,7 @@ const TextBased = ({label, filter, setFilters}) => {
 
   return (
     <div>
-       <TextField id="outlined-basic" label={label} variant="outlined" value={searchText} onChange={handleTextBasedFilter} /> 
+       <TextField id="outlined-basic" className='text_filter' label={label} variant="outlined" value={searchText} onChange={handleTextBasedFilter} /> 
     </div>
   )
 }

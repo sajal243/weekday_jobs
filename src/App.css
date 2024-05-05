@@ -16,16 +16,18 @@ h1{
   /* gap: 5%; */
   flex-wrap: wrap;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .jobs_card{
   border-radius: 20px;
-  min-width: 250px;
+  min-width: 200px;
   max-width: 350px;
   min-height: 200px;
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;
   padding: 25px 25px;
+  width: 40%;
 }
 
 .jobs_card:hover {
@@ -106,7 +108,7 @@ img{
 
 .filters, .text_filter{
   position: relative;
-  margin: 0 15px !important;
+  margin: 10px 15px !important;
 }
 
 .custom-select, .text_filter{
@@ -116,6 +118,7 @@ img{
 .filter_dropdown{
   display: flex;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .css-14lo706>span{
@@ -132,4 +135,31 @@ img{
 .close_icon:hover{
   border: none !important;
   /* background-color: none !important; */
+}
+
+
+@media (max-width: 1300px) {
+  .jobs_div{
+    justify-content: space-evenly
+  }
+}
+
+@media (max-width: 768px){
+  .jobs_card{
+    width: 30%;
+  }
+}
+
+@media (max-width: 600px){
+  .App{
+    padding: 20px 10px;
+  }
+
+  .filter_dropdown{
+    justify-content: center;
+  }
+
+  .jobs_card{
+    width: 40%;
+  }
 }

@@ -14,7 +14,7 @@ const JobsCard = ({data}) => {
 
         {(data?.minJdSalary || data?.maxJdSalary ) ?  
           <div className='salary_range'>
-            <div>Estimated Salary: <span>{data?.salaryCurrencyCode}{data?.minJdSalary} - {data?.salaryCurrencyCode}{data?.maxJdSalary}K</span></div>
+            <div>Estimated Salary: <span>{ data.minJdSalary && data?.salaryCurrencyCode}{data.minJdSalary && data?.minJdSalary + " - "}{ data.maxJdSalary && data?.salaryCurrencyCode}{data?.maxJdSalary}K</span></div>
         </div>    : ""
         }
       
