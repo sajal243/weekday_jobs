@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import JobsCard from './JobsCard';
+import Filter from "./Filter";
 
 const Jobs = () => {
 
     const [allJobs, setAllJobs] = useState([]);
     const [page, setPage] = useState(0);
     const [isLoading, setLoading] = useState(true);
+    const [filteredJobs, setFilteredJobs] = useState([]);
+    // const [filter, setFilter] = useState("");
+    const [filters, setFilters] = useState({
+        jobType: '',
+        minExp: "",
+        // Add more filters as needed
+      });
+
+    const minExp = ["0", "1", "2", "3", "4", "5", "20"];
 
     useEffect(()=>{
         const fetchData = () => {
@@ -51,6 +61,16 @@ const Jobs = () => {
 
     }, [page]);
 
+    useEffect(()=>{
+        const filtered = allJobs.filter(job=> {
+           if(filters.minExp === 0 || filters.minExp === "") {
+            return job;
+           } 
+           return parseInt(filters.minExp) <=  parseInt(job.minExp) 
+        })
+        setFilteredJobs(filtered)
+    }, [allJobs, filters])
+
     function handleScroll(){
         // console.log("window ",  window.innerHeight);
         // console.log("scrollTop ", document.documentElement.scrollTop );
@@ -63,9 +83,10 @@ const Jobs = () => {
 
   return (
     <>
+    <Filter filter={"minExp"} setFilters={setFilters} options = {minExp} label="Min. Exp"/>
     <div className='jobs_div'>
         {
-            allJobs.map((job, i)=>{
+            filteredJobs.map((job, i)=>{
                return <JobsCard data = {job} key={i} />
             })
         }

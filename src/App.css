@@ -106,8 +106,30 @@ img{
 
 .filters {
   position: relative;
+  margin: 0 10px;
 }
 
 .custom-select{
-  min-width: 50px;
+  min-width: 150px !important;
+}
+
+.filter_dropdown{
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.css-14lo706>span{
+  width: 50px;
+  /* padding-left: 20px !important; */
+}
+
+.close_icon{
+  padding: 0 !important;
+  border: none !important;
+  right: 15px;
+}
+
+.close_icon:hover{
+  border: none !important;
+  /* background-color: none !important; */
 }
